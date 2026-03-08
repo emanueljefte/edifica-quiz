@@ -1,19 +1,20 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
-
-export default {
+const Colors = {
   light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+    background: '#F5F7FA',
+    card: '#FFFFFF',
+    text: '#1A202C',
+    primary: '#00A896', // Verde do Logo
+    success: '#2DAB66',
+    error: '#E53E3E',
   },
   dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+    background: '#0B0E14',
+    card: '#1A202C',
+    text: '#E2E8F0',
+    primary: '#00D1B2', // Verde vibrante
+    success: '#48BB78',
+    error: '#FC8181',
+  }
 };
+
+export default Colors
