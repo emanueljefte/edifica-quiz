@@ -29,11 +29,13 @@ export default function Home() {
         </Typo>
 
         <LessonItem
+          id={1}
           title="01. A Certeza da Salvação"
           questions="10"
           progress={0}
         />
         <LessonItem
+          id={2}
           title="02. O Perdão do Pecado"
           questions="12"
           progress={0}

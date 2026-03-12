@@ -1,0 +1,82 @@
+{
+  "lesson": {
+    "number": 1,
+    "title": "A Certeza da Salvação",
+    "description": "Nesta lição, vamos falar daquilo que acontece quando a pessoa acolhe Jesus Cristo como Senhor e Salvador da sua vida."
+  },
+  "questions": [
+    {
+      "text": "Segundo Apocalipse 3:20, o que Jesus faz quando alguém ouve a Sua voz e abre a porta?",
+      "bible_verse": "Apocalipse 3:20",
+      "explanation": "Irmão, deves saber que Jesus está sentado no teu coração, ele deu-te esta promessa (Heb. 13:5).",
+      "options": [
+        { "text": "Ele entra e ceia com a pessoa", "isCorrect": true },
+        { "text": "Ele apenas observa de longe", "isCorrect": false },
+        { "text": "Ele julga os pecados imediatamente", "isCorrect": false },
+        { "text": "Ele espera a pessoa se tornar perfeita", "isCorrect": false }
+      ]
+    },
+    {
+      "text": "Quando é que uma pessoa se torna, de facto, filho de Deus?",
+      "bible_verse": "João 1:12",
+      "explanation": "Irmão, deves saber que te tornaste filho de Deus porque acolheste Jesus como Senhor e Salvador.",
+      "options": [
+        { "text": "Quando nasce de pais cristãos", "isCorrect": false },
+        { "text": "Quando faz boas obras", "isCorrect": false },
+        {
+          "text": "A todos os que o receberam e creram no seu nome",
+          "isCorrect": true
+        },
+        {
+          "text": "Todas as pessoas já nascem filhas de Deus",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "text": "De acordo com Colossenses 2:13, quantos dos teus pecados são perdoados?",
+      "bible_verse": "Colossenses 2:13",
+      "explanation": "Irmão, deves saber que TODOS os teus pecados são perdoados por Ele.",
+      "options": [
+        { "text": "Apenas os pecados leves", "isCorrect": false },
+        {
+          "text": "Apenas os pecados confessados ao pastor",
+          "isCorrect": false
+        },
+        { "text": "Todos os nossos delitos e pecados", "isCorrect": true },
+        {
+          "text": "Apenas os pecados cometidos após o batismo",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "text": "O que significa dizer que alguém é uma 'Nova Criatura' em Cristo?",
+      "bible_verse": "2 Coríntios 5:17",
+      "explanation": "As coisas velhas já passaram; eis que tudo se fez novo. É o início da tua nova vida com Deus.",
+      "options": [
+        { "text": "Que a pessoa nunca mais vai errar", "isCorrect": false },
+        {
+          "text": "Que as coisas velhas passaram e tudo se fez novo",
+          "isCorrect": true
+        },
+        { "text": "Que a pessoa mudou de religião apenas", "isCorrect": false },
+        { "text": "Que ela agora é um anjo", "isCorrect": false }
+      ]
+    },
+    {
+      "text": "Qual é a promessa de Jesus mencionada no manual para garantir que Ele nunca nos deixa?",
+      "bible_verse": "Hebreus 13:5",
+      "explanation": "Deus prometeu: 'Não te deixarei, nem te desampararei'.",
+      "options": [
+        { "text": "Que seremos ricos", "isCorrect": false },
+        {
+          "text": "Que Ele nunca nos deixará nem nos desamparará",
+          "isCorrect": true
+        },
+        { "text": "Que não teremos problemas no mundo", "isCorrect": false },
+        { "text": "Que Jesus voltará amanhã", "isCorrect": false }
+      ]
+    }
+  ]
+}

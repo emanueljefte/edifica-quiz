@@ -1,95 +1,102 @@
-import Colors from "@/constants/Colors";
+import { createUser } from "@/services/userService";
 import { scale, verticalScale } from "@/utils/styling";
 import { Feather } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
-import { Alert, Modal, StyleSheet, View } from "react-native";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  StyleSheet,
+  View,
+} from "react-native";
 import Button from "./ButtonLayout";
 import Input from "./Input";
 import Loading from "./Loading";
 import Typo from "./Typo";
 
-interface ModalInput {
+interface ModalInputProps {
   visible: boolean;
-  title?: string;
-  message?: string;
-  type?: "success" | "error" | "info";
-  onClose: () => void;
+  onSuccess: (user: any) => void; // Callback para quando o user for criado
 }
 
-export default function ModalInput({
-  visible,
-  title,
-  message,
-  type = "info",
-  onClose,
-}: ModalInput) {
+export default function ModalInput({ visible, onSuccess }: ModalInputProps) {
   const [loading, setLoading] = useState(false);
-  const inputName = useRef("");
-  const iconColor =
-    type === "success"
-      ? "#10b981"
-      : type === "error"
-        ? Colors.dark.error
-        : Colors.dark.primary;
+  const nameValue = useRef("");
 
   const handleSubmit = async () => {
-    console.log(inputName.current);
+    const name = nameValue.current.trim();
 
-    if (!inputName.current) {
-      return Alert.alert("Usuário", "Introduza o nome");
-    } else if (inputName.current.length < 3) {
-      return Alert.alert("Usuário", "Acrescente mais letra nesse nome");
+    if (!name) {
+      return Alert.alert(
+        "Nome Necessário",
+        "Por favor, introduz o teu nome para começar a edificação.",
+      );
     }
+
+    if (name.length < 3) {
+      return Alert.alert(
+        "Nome muito curto",
+        "O nome deve ter pelo menos 3 letras.",
+      );
+    }
+
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const newUser = await createUser(name);
+
+      // Pequeno delay para o utilizador ver o feedback de "sucesso"
+      setTimeout(() => {
+        setLoading(false);
+        onSuccess(newUser);
+      }, 800);
+    } catch (error) {
       setLoading(false);
-      inputName.current = "";
-      onClose();
-    }, 2000);
+      Alert.alert(
+        "Erro",
+        "Não foi possível iniciar a jornada. Tenta novamente.",
+      );
+    }
   };
 
   return (
-    <Modal visible={visible} transparent animationType="fade">
-      <View style={styles.overlay}>
+    <Modal visible={visible} transparent animationType="slide">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.overlay}
+      >
         <View style={styles.alertBox}>
-          <Feather name={"user"} size={verticalScale(50)} color={iconColor} />
+          <View style={styles.iconCircle}>
+            <Feather name="anchor" size={verticalScale(40)} color="#00D1B2" />
+          </View>
 
           <View style={styles.textContainer}>
-            <Typo size={22} fontWeight="700" style={{ textAlign: "center" }}>
-              Seja Bem-vinda ao Quiz sobre Edificação
+            <Typo size={22} fontWeight="800" style={styles.centerText}>
+              Inicia a tua Jornada
             </Typo>
-            <Typo
-              size={16}
-              color="#666"
-              style={{ textAlign: "center", marginTop: 8 }}
-            >
-              Introduza o teu nome para começar
+            <Typo size={15} color="#A0AEC0" style={styles.centerText}>
+              Como queres ser chamado nesta caminhada de edificação?
             </Typo>
           </View>
+
           <Input
-            placeholder="Nome Completo"
-            icon={<Feather name="user" size={20} />}
-            onChangeText={(value) => (inputName.current = value)}
+            placeholder="Teu nome ou apelido"
+            icon={<Feather name="user" size={20} color="#00D1B2" />}
+            onChangeText={(value) => (nameValue.current = value)}
+            autoFocus
           />
 
           {loading ? (
             <Loading />
           ) : (
-            <Button
-              onPress={handleSubmit}
-              style={{
-                backgroundColor: iconColor,
-                width: "100%",
-                height: verticalScale(50),
-              }}
-            >
-              <Typo color="white" fontWeight="700">
-                Guardar
+            <Button onPress={handleSubmit} style={styles.submitButton}>
+              <Typo color="#0B0E14" fontWeight="800" size={16}>
+                Começar como Pescador
               </Typo>
             </Button>
           )}
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }
@@ -97,20 +104,41 @@ export default function ModalInput({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.85)", // Escurece mais o fundo
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: scale(30),
+    paddingHorizontal: scale(25),
   },
   alertBox: {
     width: "100%",
-    backgroundColor: "white", // Adicione suporte ao tema aqui se necessário
-    borderRadius: verticalScale(24),
-    padding: scale(25),
+    backgroundColor: "#1A202C", // Surface Dark do teu tema
+    borderRadius: verticalScale(28),
+    padding: scale(30),
     alignItems: "center",
     gap: verticalScale(20),
+    borderWidth: 1,
+    borderColor: "#2D3748",
+  },
+  iconCircle: {
+    width: verticalScale(80),
+    height: verticalScale(80),
+    borderRadius: verticalScale(40),
+    backgroundColor: "rgba(0, 209, 178, 0.1)",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  centerText: {
+    textAlign: "center",
+    color: "white",
   },
   textContainer: {
-    alignItems: "center",
+    width: "100%",
+  },
+  submitButton: {
+    backgroundColor: "#00D1B2", // Teu Ciano Primário
+    width: "100%",
+    height: verticalScale(56),
+    borderRadius: 16,
   },
 });

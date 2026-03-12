@@ -33,6 +33,7 @@ export type StatCardType = {
 };
 
 export type LessonItemType = {
+  id: number;
   title: string;
   progress: number;
   questions: string;
